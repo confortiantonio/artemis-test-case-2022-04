@@ -27,7 +27,7 @@
 ### STEP 1
 Clean e start broker
 
-Avvio produttore  ./tickerplan-prd-brk_7.8.0.sh
+Avvio produttore  ./tickerplan-prd-brk_7.9.0.sh
 
 Avvio consumatore CMS ./tickerplan-cns-TICKERPLAN-LVQ-prefetch-1.sh  -> I messagi presenti in coda lvq non si refreshano piu
 
