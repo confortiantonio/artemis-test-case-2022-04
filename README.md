@@ -27,9 +27,9 @@
 ### STEP 1
 Clean and start broker
 
-Start producer: ./tickerplan-prd-brk_7.9.0.sh
+Start producer: ./tickerplan-prd-brk_7.9.0.sh -> as expected, only one message with key 0 is written on queue lvq and the messages with key 1 are updated
 
-Start CMS consumer: ./tickerplan-cns-TICKERPLAN-LVQ-prefetch-1.sh  -> Messages in the lvq queue no longer update
+Start CMS consumer: ./tickerplan-cns-TICKERPLAN-LVQ-prefetch-1.sh  -> the arrival of the message with key 0 and the updates of the messages with key 1 are expected: the updates of the messages with key 1 are not received and messages in the lvq queue no longer update
 
 ### STEP2
 Clean e start broker 
@@ -38,17 +38,17 @@ Start producer: ./tickerplan-prd-brk_7.9.0.sh
 
 Start proton consumer: ./proton-tickerplan-cns.sh -> duplicate receipt of the same key / value (first message)
 
-Start CMS consumer: ./tickerplan-cns-TICKERPLAN-LVQ-prefetch-1.sh -> Messages in the lvq queue no longer update
+Start CMS consumer: ./tickerplan-cns-TICKERPLAN-LVQ-prefetch-1.sh -> the arrival of the message with key 0 and the updates of the messages with key 1 are expected: the updates of the messages with key 1 are not received and messages in the lvq queue no longer update
 
 ### STEP3
 Clean e start broker 
 
 Start producer:  ./tickerplan-prd-brk_7.9.0.sh
 
-Start proton consumer: proton-tickerplan-cns-prefetch-100.sh -> failure to receive key 0 
+Start proton consumer: proton-tickerplan-cns-prefetch-100.sh -> failure to receive message with key 0 
 
 ### STEP4
-Start producer: ./tickerplan-prd-brk_7.9.0.sh no sleep
+Start producer: ./tickerplan-prd-brk_7.9.0.sh with no sleep
 
 Stop producer: a 500K messaggi
 
