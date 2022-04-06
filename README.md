@@ -25,50 +25,51 @@
 ## TEST CASE LVQ 
 
 ### STEP 1
-Clean e start broker
+Clean and start broker
 
-Avvio produttore  ./tickerplan-prd-brk_7.9.0.sh
+Start producer: ./tickerplan-prd-brk_7.9.0.sh
 
-Avvio consumatore CMS ./tickerplan-cns-TICKERPLAN-LVQ-prefetch-1.sh  -> I messagi presenti in coda lvq non si refreshano piu
+Start CMS consumer: ./tickerplan-cns-TICKERPLAN-LVQ-prefetch-1.sh  -> Messages in the lvq queue no longer update
 
 ### STEP2
 Clean e start broker 
 
-Avvio produttore  ./tickerplan-prd-brk_7.9.0.sh
+Start producer: ./tickerplan-prd-brk_7.9.0.sh
 
-Avvio consumatore proton ./proton-tickerplan-cns.sh -> ricezione duplicata della medesima chiave/valore (primo messaggio)
+Start proton consumer: ./proton-tickerplan-cns.sh -> duplicate receipt of the same key / value (first message)
 
-Avvio consumatore CMS ./tickerplan-cns-TICKERPLAN-LVQ-prefetch-1.sh -> I messagi presenti in coda lvq non si refreshano più
+Start CMS consumer: ./tickerplan-cns-TICKERPLAN-LVQ-prefetch-1.sh -> Messages in the lvq queue no longer update
 
 ### STEP3
 Clean e start broker 
 
-Avvio produttore  ./tickerplan-prd-brk_7.9.0.sh
+Start producer:  ./tickerplan-prd-brk_7.9.0.sh
 
-Avvio consumatore proton proton-tickerplan-cns-prefetch-100.sh -> mancata ricezione della chiave 0 (messaggio con chiave inserito ma non editato)
+Start proton consumer: proton-tickerplan-cns-prefetch-100.sh -> failure to receive key 0 
 
 ### STEP4
-Avvio produttore  ./tickerplan-prd-brk_7.9.0.sh senza sleep
+Start producer: ./tickerplan-prd-brk_7.9.0.sh no sleep
 
-Stop produttore   a 500K messaggi
+Stop producer: a 500K messaggi
 
-Avvio consumatore CMS  ./tickerplan-cns-TICKERPLAN-LVQ-prefetch-1.sh  -> invece di ricevere l ultima immagine snapshot ne riceviamo enne “a blocchi” fino al raggiungimento dell’ultimo messaggio inviato dal producer.
-Lo stesso comportamento si osserva anche con la console. Stesso comportamento con il consumatore di tipo proton.
+Start CMS consumer:   ./tickerplan-cns-TICKERPLAN-LVQ-prefetch-1.sh  -> 
+instead of receiving the latest image of snapshot message updates, we receive them "in blocks" until the last message sent by the producer is reached.
+The same behavior is also observed with the console. Same behavior with the proton consumer.
 
 
 
 ## TEST CASE FILTERS
 
 ### STEP 1
-Avvio produttore  ./push-srv-proton-prd.sh
+Start producer  ./push-srv-proton-prd.sh
 
-Avvio consumatore proton ./push-srv-proton-cns-filter-key-1.sh -> funziona come atteso: filtra i messaggi con chiave 1
+Start first proton consumer:  ./push-srv-proton-cns-filter-key-1.sh -> works as expected: filter messages with key 1
 
-Avvio secondo consumatore proton ./push-srv-proton-cns-filter-key-1.sh -> i messaggi vengono distribuiti in modalità anycast anziché multicast come atteso
+Start second proton consumer: ./push-srv-proton-cns-filter-key-1.sh -> messages are distributed anycast rather than multicast as expected
 
 ### STEP 2
-Avvio produttore  ./push-srv-proton-prd.sh
+Start producer:  ./push-srv-proton-prd.sh
 
-Avvio consumatore proton ./push-srv-proton-cns-filter-key-1.sh -> funziona come atteso: filtra i messaggi con chiave 1
+Start proton consumer:  ./push-srv-proton-cns-filter-key-1.sh -> works as expected: filter messages with key 1
 
-Avvio consumatore proton ./push-srv-proton-cns-filter-key-2.sh -> non si riceve alcun messaggio da entrambi i consumatori
+Start proton consumer:  ./push-srv-proton-cns-filter-key-2.sh -> no messages are received from either consumer
