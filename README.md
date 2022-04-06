@@ -60,7 +60,7 @@ Lo stesso comportamento si osserva anche con la console. Stesso comportamento co
 ## TEST CASE FILTERS
 
 ### STEP 1
-Avvio produttore  ./push-srv-proton-prd-sector.sh
+Avvio produttore  ./push-srv-proton-prd.sh
 
 Avvio consumatore proton ./push-srv-proton-cns-filter-key-1.sh -> funziona come atteso: filtra i messaggi con chiave 1
 
