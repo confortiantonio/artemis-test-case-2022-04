@@ -74,6 +74,6 @@ The test case LVQ uses the address name SELECTOR showen in the broker configurat
 ### STEP 2
 - Start producer:  ./push-srv-proton-prd.sh
 
-- Start proton consumer:  ./push-srv-proton-cns-filter-key-1.sh -> works as expected: filter messages with key 1
+- Start proton consumer:  ./push-srv-proton-cns-filter-key-1.sh -> works as expected: filter messages with key 1 are received
 
 - Start proton consumer:  ./push-srv-proton-cns-filter-key-2.sh -> no messages are received from either consumer
