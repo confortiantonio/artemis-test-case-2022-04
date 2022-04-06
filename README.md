@@ -67,7 +67,7 @@ Avvio consumatore proton ./push-srv-proton-cns-filter-key-1.sh -> funziona come 
 Avvio secondo consumatore proton ./push-srv-proton-cns-filter-key-1.sh -> i messaggi vengono distribuiti in modalità anycast anziché multicast come atteso
 
 ### STEP 2
-Avvio produttore  ./push-srv-proton-prd-sector.sh
+Avvio produttore  ./push-srv-proton-prd.sh
 
 Avvio consumatore proton ./push-srv-proton-cns-filter-key-1.sh -> funziona come atteso: filtra i messaggi con chiave 1
 
