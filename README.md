@@ -1,6 +1,6 @@
 # artemis-test-case-2022-04
 
-Configurazione broker:
+## Configurazione broker:
 
 
          <address-setting match="SELECTOR">
@@ -34,7 +34,7 @@ Avvio consumatore CMS ./tickerplan-cns-TICKERPLAN-LVQ-prefetch-1.sh  -> I messag
 ### STEP2
 Clean e start broker 
 
-Avvio produttore  ./tickerplan-prd-brk_7.8.0.sh
+Avvio produttore  ./tickerplan-prd-brk_7.9.0.sh
 
 Avvio consumatore proton ./proton-tickerplan-cns.sh -> ricezione duplicata della medesima chiave/valore (primo messaggio)
 
@@ -43,12 +43,12 @@ Avvio consumatore CMS ./tickerplan-cns-TICKERPLAN-LVQ-prefetch-1.sh -> I messagi
 ### STEP3
 Clean e start broker 
 
-Avvio produttore  ./tickerplan-prd-brk_7.8.0.sh
+Avvio produttore  ./tickerplan-prd-brk_7.9.0.sh
 
 Avvio consumatore proton proton-tickerplan-cns-prefetch-100.sh -> mancata ricezione della chiave 0 (messaggio con chiave inserito ma non editato)
 
 ### STEP4
-Avvio produttore  ./tickerplan-prd-brk_7.8.0.sh senza sleep
+Avvio produttore  ./tickerplan-prd-brk_7.9.0.sh senza sleep
 
 Stop produttore   a 500K messaggi
 
