@@ -24,6 +24,8 @@
 
 ## TEST CASE LVQ 
 
+In the test case LVQ it's used the address name TICKERPLAN showen in the broker configuration above. 
+
 ### STEP 1
 Clean and start broker
 
@@ -59,6 +61,8 @@ The same behavior is also observed with the console. Same behavior with the prot
 
 
 ## TEST CASE FILTERS
+
+In the test case LVQ it's used the address name SELECTOR showen in the broker configuration above.
 
 ### STEP 1
 Start producer  ./push-srv-proton-prd.sh
