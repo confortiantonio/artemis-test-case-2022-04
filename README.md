@@ -1,6 +1,6 @@
 # artemis-test-case-2022-04
 
-## Configurazione broker:
+## Broker configuration:
 
 
          <address-setting match="SELECTOR">
