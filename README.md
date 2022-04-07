@@ -21,7 +21,6 @@
             </multicast>
        </address>
 
-
 ## TEST CASE LVQ 
 In this test case the producer sends a single message with key 0 and n messages with key 1 to the address TICKERPLAN.
 A consumer on the LVQ queue will reads the messages produced
@@ -79,3 +78,8 @@ A consumer on queue name "QUEUE.SEL" will read messages with a filter on propert
 - Start proton consumer:  ./push-srv-proton-cns-filter-key-1.sh -> works as expected: filter messages with key 1 are received
 
 - Start proton consumer:  ./push-srv-proton-cns-filter-key-2.sh -> don't works as expected: no messages are received from either consumer
+
+## Versions
+- amq-broker-7.9.0
+- active-mq-cms-3.9.5
+- amq-clients-2.9.0
