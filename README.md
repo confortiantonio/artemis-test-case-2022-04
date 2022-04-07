@@ -23,8 +23,8 @@
 
 
 ## TEST CASE LVQ 
-
-The test case LVQ uses the address name TICKERPLAN showen in the broker configuration above. 
+In this test case the producer sends a single message with key 0 and n messages with key 1 to the address TICKERPLAN.
+A consumer on the LVQ queue will reads the messages produced
 
 ### STEP 1
 - Clean and start broker
@@ -61,8 +61,8 @@ The same behavior is also observed with the console. Same behavior with the prot
 
 
 ## TEST CASE FILTERS
+In this test case the producer sends a single message with key 0 and n messages with key 1 to the address SELECTOR.
 
-The test case LVQ uses the address name SELECTOR showen in the broker configuration above.
 
 ### STEP 1
 - Start producer  ./push-srv-proton-prd.sh
