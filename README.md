@@ -49,7 +49,7 @@ A consumer on the LVQ queue will reads the messages produced
 - Start proton consumer: proton-tickerplan-cns-prefetch-100.sh -> it's expected to read only one message with key 0 and the updates of the messages with key 1. What is obvserved is: the consumer don't reads the message with key 0 
 
 ### STEP4
-- Start producer: ./tickerplan-prd-brk_7.9.0.sh with no sleep
+- Start producer: ./tickerplan-prd-brk_7.0-nosleep.sh
 
 - Stop producer at about 500K messages
 
