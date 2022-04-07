@@ -62,6 +62,9 @@ The same behavior is also observed with the console. Same behavior with the prot
 
 ## TEST CASE FILTERS
 In this test case the producer sends a single message with key 0 and n messages with key 1 to the address SELECTOR.
+Each message n is sent with a property named SUBJECT containing values of the type:
+"bv.quote.n%3.id" where n%3 is the result of operation n modulo 3.
+A consumer on queue name "QUEUE.SEL" will read messages with a filter on property SUBJECT set to "bv.quote.#FILTER.id"
 
 
 ### STEP 1
