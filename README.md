@@ -59,21 +59,21 @@ The same behavior is also observed with the console. Same behavior with the prot
 
 
 ## TEST CASE FILTERS
-In this test case the producer sends a single message with key 0 and n messages with key 1 to the address SELECTOR.
-Each message n is sent with a property named SUBJECT containing values of the type:
+In this test case the producer sends n messages updating three keys 0,1 and 3 to the address SELECTOR.
+Each message is sent with a property named SUBJECT containing values of the type:
 "bv.quote.n%3.id" where n%3 is the result of operation n modulo 3.
 A consumer on queue name "QUEUE.SEL" will read messages with a filter on property SUBJECT set to "bv.#.FILTER.id" where FILTER is a numeric param of consumer.
 
 
 ### STEP 1
-- Start producer  ./push-srv-proton-prd.sh
+- Start producer  ./push-srv-proton-prd-selector.sh
 
 - Start first proton consumer:  ./push-srv-proton-cns-filter-key-1.sh -> works as expected: only messages with SUBJECT "bv.quote.1.id" are received
 
 - Start second proton consumer: ./push-srv-proton-cns-filter-key-1.sh -> don't works as expected: messages are distributed anycast rather than multicast
 
 ### STEP 2
-- Start producer:  ./push-srv-proton-prd.sh
+- Start producer:  ./push-srv-proton-prd-selector.sh
 
 - Start proton consumer:  ./push-srv-proton-cns-filter-key-1.sh -> works as expected: filter messages with key 1 are received
 
