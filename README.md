@@ -65,6 +65,86 @@ When a large number of messages are sent to a LVQ queue, the consumer (CMS or PR
 The same behavior is also observed with the console. 
 Same behavior with the proton consumer.
 
+### STEP5
+
+By using a Proton producer, the broker behaves differently but not correctly.
+We have experienced two different bugs:
+
+1st bug:
+Follow these steps:
+
+1.	Start the producer : let it generate a bunch of messages …
+
+
+msgNumber 147 msgKey 1000  
+msgNumber 148 msgKey 1000  
+msgNumber 149 msgKey 1000  
+msgNumber 150 msgKey 1000  
+msgNumber 151 msgKey 1000  
+msgNumber 152 msgKey 1000  
+msgNumber 153 msgKey 1000  
+msgNumber 154 msgKey 1000  
+msgNumber 155 msgKey 1000  
+msgNumber 156 msgKey 1000  
+msgNumber 157 msgKey 1000  
+
+2.	Start the consumer
+
+RECEIVE: Opened receiver for source address 'TICKERPLAN::LVQ'
+
+Message #1 Received: body<sent at 27-04-2022 10:17:19> key<0> messageNumber<0>  
+Message #2 Received: body<sent at 27-04-2022 10:17:30> key<1000> messageNumber<107>  
+Message #3 Received: body<sent at 27-04-2022 10:17:30> key<1000> messageNumber<108>  
+Message #4 Received: body<sent at 27-04-2022 10:17:30> key<1000> messageNumber<109>  
+Message #5 Received: body<sent at 27-04-2022 10:17:31> key<1000> messageNumber<110>  
+….
+
+3.	Stop the consumer
+4.	Stop the producer
+5.	Start the consumer
+
+RECEIVE: Opened receiver for source address 'TICKERPLAN::LVQ'  
+Message #1 Received: body<sent at 27-04-2022 10:18:48> key<1000> messageNumber<157>  
+Message #2 Received: body<sent at 27-04-2022 10:18:32> key<0> messageNumber<0>  
+Message #3 Received: body<sent at 27-04-2022 10:18:48> key<1000> messageNumber<157>   <- Duplicate Message  
+
+
+2nd  bug:
+Follow these steps:
+
+1.	Start the producer : let it generate a bunch of messages 
+
+…
+msgNumber 27 msgKey 1000  
+msgNumber 28 msgKey 1000  
+msgNumber 29 msgKey 1000  
+msgNumber 30 msgKey 1000  
+msgNumber 31 msgKey 1000  
+msgNumber 32 msgKey 1000  
+msgNumber 33 msgKey 1000  
+msgNumber 34 msgKey 1000  
+msgNumber 35 msgKey 1000  
+msgNumber 36 msgKey 1000  
+
+2.	Stop the producer
+3.	Start the consumer
+
+RECEIVE: Opened receiver for source address 'TICKERPLAN::LVQ'  
+Message #1 Received: body<sent at 27-04-2022 10:27:35> key<0> messageNumber<0>  
+Message #2 Received: body<sent at 27-04-2022 10:27:44> key<1000> messageNumber<84>  
+
+4.	Stop the consumer
+5.	Start the producer
+6.	Stop the producer
+7.	Start the consumer
+
+RECEIVE: Opened receiver for source address 'TICKERPLAN::LVQ'  
+Message #1 Received: body<sent at 27-04-2022 10:27:59> key<0> messageNumber<0>  
+Message #2 Received: body<sent at 27-04-2022 10:28:02> key<1000> messageNumber<36>  
+Message #3 Received: body<sent at 27-04-2022 10:27:59> key<0> messageNumber<0>                  <- Duplicate Message  
+Message #4 Received: body<sent at 27-04-2022 10:28:02> key<1000> messageNumber<36>              <- Duplicate Message  
+
+
 
 
 ## TEST CASE FILTERS
