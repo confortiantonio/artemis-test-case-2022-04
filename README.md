@@ -178,6 +178,30 @@ Two different consumers instead don't receive messages.
 
 - Start proton consumer:  ./push-srv-proton-cns-filter-key-2.sh -> when the consumer with SUBJECT "bv.quote.2.id" is started, both consumer don't receive messages
 
+### STEP 3
+
+Follow these steps:
+
+1.	Start the producer (push-srv-proton-prd-selector.sh in https://github.com/confortiantonio/artemis-test-case-2022-04/tree/main/test-case-filters/step3/bin)
+2.	Start a 1st  consumer without filter (proton-consumer-nofilter.sh)
+3.	Start a 2nd consumer without filter (proton-consumer-nofilter.sh)
+
+Messages are round-robined to both consumers 
+
+4.	Stop the 2nd consumer without filter
+5.	Start a 2nd consumer with filter (proton-consumer-filter.sh)
+
+Filtered messages are round-robined to both consumers 
+
+6.	Stop the 2nd consumer with filter
+
+The 1st consumer continues to receive filtered messages
+
+7.	Stop the 1st consumer without filter
+8.	Start the 1st consumer without filter (proton-consumer-nofilter.sh)
+
+The 1st consumer receives all messages
+
 ## Versions
 - amq-broker-7.9.0
 - active-mq-cms-3.9.5
