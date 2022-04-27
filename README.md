@@ -73,7 +73,7 @@ We have experienced two different bugs:
 1st bug:
 Follow these steps:
 
-1.	Start the producer : let it generate a bunch of messages …
+1.	Start the producer (./bin/tickerplan-proton-prd.sh) : let it generate a bunch of messages …
 
 
 msgNumber 147 msgKey 1000  
@@ -88,7 +88,7 @@ msgNumber 155 msgKey 1000
 msgNumber 156 msgKey 1000  
 msgNumber 157 msgKey 1000  
 
-2.	Start the consumer
+2.	Start the consumer (./bin/proton-tickerplan-cns.sh)
 
 RECEIVE: Opened receiver for source address 'TICKERPLAN::LVQ'
 
