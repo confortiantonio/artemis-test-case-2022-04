@@ -145,7 +145,64 @@ Message #2 Received: body<sent at 27-04-2022 10:28:02> key<1000> messageNumber<3
 Message #3 Received: body<sent at 27-04-2022 10:27:59> key<0> messageNumber<0>                  <- Duplicate Message  
 Message #4 Received: body<sent at 27-04-2022 10:28:02> key<1000> messageNumber<36>              <- Duplicate Message  
 
+### STEP 6 (case RH 03202592)
 
+1.	Start the producer (./tickerplan-proton-prd-nodelay.sh in https://github.com/confortiantonio/artemis-test-case-2022-04/tree/main/test-case-lvq/step5/bin)
+2.	Stop the producer
+
+…
+msgNumber 77665 msgKey 1000  
+msgNumber 77666 msgKey 1000  
+msgNumber 77667 msgKey 1000  
+msgNumber 77668 msgKey 1000  
+msgNumber 77669 msgKey 1000  
+msgNumber 77670 msgKey 1000  
+msgNumber 77671 msgKey 1000  
+msgNumber 77672 msgKey 1000  
+msgNumber 77673 msgKey 1000  
+msgNumber 77674 msgKey 1000  
+msgNumber 77675 msgKey 1000  
+msgNumber 77676 msgKey 1000  
+
+3.	Start the consumer (proton-tickerplan-cns.sh in https://github.com/confortiantonio/artemis-test-case-2022-04/tree/main/test-case-lvq/step5/bin)
+
+RECEIVE: Opened receiver for source address 'TICKERPLAN::LVQ'  
+Message #1 Received: body<sent at 27-04-2022 12:11:11> key<0> messageNumber<0>  
+Message #2 Received: body<sent at 27-04-2022 12:11:21> key<1000> messageNumber<77676>  
+
+
+4.	Start the producer
+5.	The consumer receives
+
+…
+Message #3 Received: body<sent at 27-04-2022 12:01:18> key<0> messageNumber<0>  
+Message #4 Received: body<sent at 27-04-2022 12:01:18> key<1000> messageNumber<28>  
+
+6.	Stop the producer
+7.	Stop the consumer
+8.	Start the producer
+…
+msgNumber 156349 msgKey 1000  
+msgNumber 156350 msgKey 1000  
+msgNumber 156351 msgKey 1000  
+msgNumber 156352 msgKey 1000  
+msgNumber 156353 msgKey 1000  
+msgNumber 156354 msgKey 1000  
+msgNumber 156355 msgKey 1000  
+msgNumber 156356 msgKey 1000  
+msgNumber 156357 msgKey 1000  
+msgNumber 156358 msgKey 1000  
+msgNumber 156359 msgKey 1000  
+
+9.	Start the consumer
+
+Message #1 Received: body<sent at 27-04-2022 12:17:02> key<0> messageNumber<0>  
+Message #2 Received: body<sent at 27-04-2022 12:17:16> key<1000> messageNumber<111624>  
+Message #3 Received: body<sent at 27-04-2022 12:17:16> key<1000> messageNumber<111626>  
+Message #4 Received: body<sent at 27-04-2022 12:17:02> key<0> messageNumber<0>                   <- Duplicate message (same as Step 5 ??)  
+Message #5 Received: body<sent at 27-04-2022 12:17:17> key<1000> messageNumber<112375>  
+Message #6 Received: body<sent at 27-04-2022 12:17:17> key<1000> messageNumber<112375> <- Duplicate message  
+Message #7 Received: body<sent at 27-04-2022 12:17:17> key<1000> messageNumber<112684>  
 
 
 ## TEST CASE FILTERS
