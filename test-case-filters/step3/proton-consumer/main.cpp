@@ -199,7 +199,7 @@ int main(int argc, char **argv)
     {
         std::string conn_url = argc > 1 ? argv[1] : "//127.0.0.1:61616";
         std::string addr = argc > 2 ? argv[2] : "SELECTOR::QUEUE.SEL";
-        std::string filter = argc > 3 ? argv[3] : "SUBJECT LIKE 'bv.quote.%.id'";
+        std::string filter = argc > 3 ? argv[3] : "";
 
         std::cout
             << printNow() << " params:"
