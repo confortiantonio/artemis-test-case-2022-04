@@ -206,7 +206,7 @@ Message #7 Received: body<sent at 27-04-2022 12:17:17> key<1000> messageNumber<1
 
 
 ## TEST CASE FILTERS
-In this test case the producer sends n messages updating three keys 0,1 and 3 to the address SELECTOR.
+In this test case the producer sends n messages updating three keys 0,1 and 2 to the address SELECTOR.
 
 Each message is sent with a property named SUBJECT containing values of the type:
 "bv.quote.n%3.id" where n%3 is the result of operation n modulo 3.
