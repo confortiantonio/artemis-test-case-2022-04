@@ -108,6 +108,7 @@ Message #1 Received: body<sent at 27-04-2022 10:18:48> key<1000> messageNumber<1
 Message #2 Received: body<sent at 27-04-2022 10:18:32> key<0> messageNumber<0>  
 Message #3 Received: body<sent at 27-04-2022 10:18:48> key<1000> messageNumber<157>   <- Duplicate Message  
 
+6.	Stop the consumer
 
 2nd  bug:
 Follow these steps:
